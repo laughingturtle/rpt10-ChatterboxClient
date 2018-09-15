@@ -7,11 +7,12 @@
 
     <!-- dependencies -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
     <script>
       // YOU DO NOT NEED TO EDIT THIS CODE
       if (!/(&|\?)username=/.test(window.location.search)) {
         var newSearch = window.location.search;
-        if (newSearch !== '' & newSearch !== '?') {
+        if (newSearch !== '' & newSearch !== '?'){
           newSearch += '&';
         }
         newSearch += 'username=' + (prompt('What is your name?') || 'anonymous');
@@ -26,7 +27,22 @@
     <div id="main">
       <h1>chatterbox</h1>
       <!-- Your HTML goes here! -->
+      <!-- Your HTML goes here! -->
+      <!-- Your HTML goes here! -->
+      <select>
+        <option value="volvo">Lobby</option>
+        <option value="saab">Test1</option>
+        <option value="opel">Test2</option>
+        <option value="audi">Test3</option>
+      </select> <br><br>
+    <form id="msgs">
+      <input type="text" name="text" size="35" id="textInput">
+      <input type ="hidden" id="roomname" name="roomname" value ="Lobby">
+      <input type="submit" id="btn" value="Submit">
+    </form>
     </div>
+
     <div id="chats"></div>
   </body>
 </html>
+
