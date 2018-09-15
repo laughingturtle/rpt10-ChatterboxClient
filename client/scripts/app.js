@@ -1,31 +1,35 @@
 // YOUR CODE HERE:
-  var app = {};
-  app.server = "http://parse.rpt.hackreactor.com/chatterbox/classes/messages"
+class Chatterbox {
+  constructor() {
+    this.server = "http://parse.rpt.hackreactor.com/chatterbox/classes/messages"
+    this.username = window.location.search.slice(10);
+  }
 
-  app.init = function(){
-    $( document ).ready(function() {
+  init(){
+    $(document).ready(function() {
       $("#btn").click(function(){
         this.send();
       });
-  });
+    });
     // document.getElementById("btn").addEventListener("click", this.send);
   }
 
-  app.send = function() {
+  send(){
     //escape text in form to protect against xss attack
     console.log("you clicked me!!!");
     //
-    var message = $("#msgs").serializeArray().reduce(function(obj, item){
+    this.message = $("#msgs").serializeArray().reduce(function(obj, item){
       obj[item.name] = item.value;
       return obj;
-  }, {});
-      console.log('our message: ', message);
+    }, {});
+    this.message.username = this.username;
+    console.log('our message: ', this.message);
 
     $.ajax({
       // This is the url you should use to communicate with the parse API server.
       url: this.server,
       type: 'POST',
-      data: JSON.stringify(message),
+      data: JSON.stringify(this.message),
       contentType: 'application/json',
       success: function (data) {
         console.log('chatterbox: Message sent');
@@ -37,8 +41,7 @@
     });
   };
 
-
-  app.fetch = function() {
+  fetch() {
     $.ajax({
       // This is the url you should use to communicate with the parse API server.
       url: this.server,
@@ -50,30 +53,34 @@
       },
       error: function (data) {
         // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-          console.error('chatterbox: Failed to send message', data);
-        }
+        console.error('chatterbox: Failed to send message', data);
+      }
     });
   }
 
-  app.clearMessages = function() {
+  clearMessages() {
     $("#chats").empty();
   }
 
-  app.renderMessage = function() {
+  renderMessage() {
     $(document).ajaxSuccess(function() {
       $("#chats").text("Triggered ajaxSuccess handler.");
-  });
+    });
   }
 
-  app.renderRoom = function() {
+  renderRoom() {
 
   }
 
-// app.init();
+};
 
-// function foo(){
-//   console.log("foo!");
-// }
+const app = new Chatterbox();
+
+  // app.init();
+
+  // function foo(){
+    //   console.log("foo!");
+    // }
 
 //add a textBox to html with a button;
 //send contents to parse;
