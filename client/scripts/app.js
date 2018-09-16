@@ -11,15 +11,22 @@
     // document.getElementById("btn").addEventListener("click", this.send);
   }
 
+  //LOOK AT SPEC RUNNER ON THIS ONE & DESIRED STRUCTURE
   app.send = function() {
     //escape text in form to protect against xss attack
     console.log("you clicked me!!!");
     //
-    var message = $("#msgs").serializeArray().reduce(function(obj, item){
-      obj[item.name] = item.value;
-      return obj;
-  }, {});
-      console.log('our message: ', message);
+  //   var message = $("#msgs").serializeArray().reduce(function(obj, item){
+  //     obj[item.name] = item.value;
+  //     return obj;
+  // }, {});
+  //     console.log('our message: ', message);
+
+    var message = {
+      text: 'It\'s good to be the king',
+      roomname: 'lobby',
+      username: 'Mel Brooks'
+    };
 
     $.ajax({
       // This is the url you should use to communicate with the parse API server.
@@ -62,7 +69,7 @@
 //RANDY ADDED
   app.renderMessage = function() {
     var div = $('<div></div>');
-    div.text(message.text);
+    // div.text(message.text);
     $('#chats').append(div);
   }
 
