@@ -43,7 +43,7 @@
       // This is the url you should use to communicate with the parse API server.
       url: this.server,
       type: 'GET',
-      data: JSON.stringify(messageStream),
+      data: JSON.stringify(message),
       contentType: 'application/json',
       success: function (data) {
         console.log('chatterbox: Message sent');
@@ -59,14 +59,17 @@
     $("#chats").empty();
   }
 
+//RANDY ADDED
   app.renderMessage = function() {
-    $(document).ajaxSuccess(function() {
-      $("#chats").text("Triggered ajaxSuccess handler.");
-  });
+    var div = $('<div></div>');
+    div.text(message.text);
+    $('#chats').append(div);
   }
 
+//RANDY ADDED
   app.renderRoom = function() {
-
+    var el = $('<div>');
+    $('#roomSelect').append(el);
   }
 
 // app.init();
