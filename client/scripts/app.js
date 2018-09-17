@@ -3,25 +3,18 @@ class Chatterbox {
   constructor() {
     this.server = "http://parse.rpt.hackreactor.com/chatterbox/classes/messages"
     this.username = window.location.search.slice(10);
-    this.text;
-    this.roomname;
-    this.message;
+    this.text = 'text';
+    this.roomname = 'roomname';
+    this.message = 'messagesesee';
     // this.init();
   }
 
   init(){
-    $(document).ready(function() {
-      $("#btn").click(function(){
-        text = $("#textmessage").val();
-        roomname = $("#roomname").val();
-        this.createMessage();
-      });
-    });
-    //THIS IS ALSO INSIDE FETCH FUNCTION
-    setInterval(function() {
-    this.fetch();
-    }, 3000);
-    // document.getElementById("btn").addEventListener("click", this.send);
+    //$(document).ready(function() {
+    // setInterval(function() {
+    // this.fetch();
+    // }, 3000);
+    //});
   }
 
 
@@ -46,6 +39,7 @@ class Chatterbox {
       data: JSON.stringify(message),
       contentType: 'application/json',
       success: function (data) {
+        console.log('chatterbox: Message = ', message); //tester
         console.log('chatterbox: Message sent');
       },
       error: function (data) {
@@ -60,13 +54,14 @@ fetch(){
   // setInterval(function() {
     $.ajax({
       url: this.server,
-      type: 'POST',
-      data: JSON.stringify(message),
+      type: 'GET',
+      // data: JSON.stringify(message),
       data: 'order=-createdAt',
       // data: {"order":"-createdAt", "group": "chatroom"},
       contentType: 'application/json',
       success: function (data) {
         console.log('chatterbox: Message received');
+        console.log('data', data)
       },
       error: function (data) {
         console.error('chatterbox: Failed to receive message', data);
@@ -97,9 +92,16 @@ fetch(){
   //CREATE A MESSAGE UPON CLICKING SEND
   createMessage(){
     //link the form with the send button
+    $("#btn").click(function(){
+      console.log("clicked");
+      this.text = $("#textmessage").val();
+      console.log(this.text);
+      this.roomname = $("#roomname").val();
+      console.log(this.roomname);
+    });
     //upon clicking send
       //send the information within the form to the app.send() function;
-    var message = {
+    this.message = {
       username: this.username,
       text: this.text,
       roomname: this.roomname
@@ -120,7 +122,7 @@ const app = new Chatterbox();
 //get parse stream;
 //place in ID Chats (<div id="chats"></div>);
 
-//add dropdown for rooms;
+//add drop down for rooms;
 //allow users to create their own rooms and enter others;
 //allow users to friend other users;
 //display all messages sent by friends in bold;
