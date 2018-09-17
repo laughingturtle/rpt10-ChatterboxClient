@@ -3,12 +3,17 @@ class Chatterbox {
   constructor() {
     this.server = "http://parse.rpt.hackreactor.com/chatterbox/classes/messages"
     this.username = window.location.search.slice(10);
+    this.text;
+    this.roomname;
+    this.message;
     // this.init();
   }
 
   init(){
     $(document).ready(function() {
       $("#btn").click(function(){
+        text = $("#textmessage").val();
+        roomname = $("#roomname").val();
         this.createMessage();
       });
     });
@@ -94,12 +99,13 @@ fetch(){
     //link the form with the send button
     //upon clicking send
       //send the information within the form to the app.send() function;
-    let message = {
+    var message = {
       username: this.username,
-      text: $("#textmessage").val(),
-      roomname: $("#roomname").val()
+      text: this.text,
+      roomname: this.roomname
     };
-    this.send(message);
+    console.log(this.message);
+    this.send(this.message);
   };
 
 
