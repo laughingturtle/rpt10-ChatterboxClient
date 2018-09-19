@@ -101,6 +101,9 @@ fetch(){
   changeRoom(){
     this.currentRoom = $("#roomsDropDown").val();
     this.roomname = $("#roomsDropDown").val();
+    $('#roomname').val(this.roomname);
+    $('#roomname').val(this.roomname);
+    $('#currRoomInner').text(this.currentRoom);
   }
 
   populateDropdown(){
