@@ -58,6 +58,9 @@ form input[type=text] {
     font-size: 12px;
     padding: 5px;
 }
+.newRoom{
+    width: 20%;
+}
 
 .chat {
     padding: 5px;
@@ -94,4 +97,14 @@ form input[type=text] {
 .publishedMessages{
     font-size: 12px;
     padding-bottom: 8px;
+}
+.roomdeets{
+    top: 0px;
+    float:left;
+    width: 180px;
+    padding: 0px;
+    margin: 0px;
+}
+.roomdeets1{
+    width: 150px;
 }

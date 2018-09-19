@@ -29,12 +29,25 @@
       <!-- Your HTML goes here! -->
       <!-- Your HTML goes here! -->
       <!-- Your HTML goes here! -->
-      <select>
-        <option value="volvo">Lobby</option>
-        <option value="saab">Test1</option>
-        <option value="opel">Test2</option>
-        <option value="audi">Test3</option>
-      </select> <br><br>
+      <div id="roomContainer">
+        <div class="roomdeets roomdeets1">
+            <form id="roomNav">
+          <select>
+            <option value="volvo">Lobby</option>
+            <option value="saab">Test1</option>
+            <option value="opel">Test2</option>
+            <option value="audi">Test3</option>
+          </select>
+          <input type="button" id="btn3" value="Go">
+          </form>
+        </div>
+        <div class="roomdeets">
+          <form id="addRoom">
+            <input type="text newRoom" id="newRoomName" name="newRoomName" size="12">
+            <input type="button" id="btn2" value="New Room">
+          </form>
+        </div>
+      </div>
     <form id="msgs">
     <!--  <input type ="hidden" id="usernameField" name="username" value =""> -->
       <input type="text" id="textmessage" name="textmessage" size="35">
