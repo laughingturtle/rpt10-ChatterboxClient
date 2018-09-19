@@ -5,12 +5,15 @@ class Chatterbox {
     this.username = window.location.search.slice(10);
     this.text = 'text';
     this.roomname = 'roomname';
+    this.currentRoom = 'Lobby';
     this.message = 'messagesesee';
 //   this.publishText = '';
 //   this.publishUsername = '';
 //   this.publishRoomname = '';
     // this.createMessage();
     this.rooms = [];
+    this.newRoomName = 'newroomname';
+    this.dropdown = '',
     this.init();
   }
 
@@ -87,7 +90,26 @@ fetch(){
     let div = $("<div></div>")
     $("#roomSelect").append(div);
   }
+  createNewRoom(){
+    this.newRoomName = $("#newRoomName").val();
+    if(this.newRoomName !== ''){
+      this.rooms.push(this.newRoomName);
+      console.log(this.rooms);
+      this.populateDropdown();
+    }
+  }
+  changeRoom(){
+    this.currentRoom = $("#roomsDropDown").val();
+    this.roomname = $("#roomsDropDown").val();
+  }
 
+  populateDropdown(){
+    for(var i = 0; i < this.rooms.length; i++){
+      var val = this.rooms[i];
+      this.dropdown = $(`<option value='${val}'>${val}</option>`);
+      $("#roomsDropDown").append(this.dropdown);
+    }
+  }
   //ADD A FRIEND UPON CLICKING THEIR USERNAME;
   addFriend(){
 
@@ -115,6 +137,18 @@ fetch(){
         $("#btn").click(function() {
         console.log("you clicked your button, whoohooo!!!");
           app.createMessage.call(app);
+        });
+      });
+      $(document).ready(function() {
+        $("#btn2").click(function() {
+        console.log("you clicked your add room button");
+          app.createNewRoom.call(app);
+        });
+      });
+      $(document).ready(function() {
+        $("#btn3").click(function() {
+        console.log("you clicked your change room button");
+          app.changeRoom.call(app);
         });
       });
     };
