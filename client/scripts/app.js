@@ -77,7 +77,7 @@ fetch(){
       var publishUsername = this.encodeHTML(data["results"][key]["username"]);
       var publishText = this.encodeHTML(data["results"][key]["text"]);
       let snippet = $(`<div class ='publishedMessages'><span class='pubusername'>@${publishUsername}</span>:- <span class='pubtext'>${publishText}</span></div>`);
-      if(publishUsername !== undefined){
+      if(publishUsername !== undefined && publishText !== undefined){
         //XSS METHOD CALLBACK
       if(publishText.includes("&lt;") !== true && publishText.includes("('") !== true && publishText.includes("$(") !== true){
           $("#chats").append(snippet);
